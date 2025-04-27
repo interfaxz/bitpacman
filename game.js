@@ -10,21 +10,37 @@ const config = {
     parent: "game"
 };
 
-// Загрузка спрайтов
+let player;
+let cursors;
+
 function preload() {
     this.load.image("bitcoin", "assets/bitcoin.png");
     this.load.image("sec", "assets/sec.png");
 }
 
-// Создание объектов
 function create() {
-    this.player = this.add.sprite(100, 100, "bitcoin");
-    this.sec = this.add.sprite(300, 300, "sec");
+    // Добавляем спрайты
+    player = this.add.sprite(400, 300, "bitcoin");
+    this.sec = this.add.sprite(200, 200, "sec");
+
+    // Включаем управление клавиатурой
+    cursors = this.input.keyboard.createCursorKeys();
 }
 
-// Основной цикл
 function update() {
-    // Движение SEC (простейший AI)
+    // Движение игрока
+    if (cursors.left.isDown) {
+        player.x -= 3;
+    } else if (cursors.right.isDown) {
+        player.x += 3;
+    }
+    if (cursors.up.isDown) {
+        player.y -= 3;
+    } else if (cursors.down.isDown) {
+        player.y += 3;
+    }
+
+    // Движение SEC (простой AI)
     this.sec.x += 0.5;
 }
 
