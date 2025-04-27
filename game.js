@@ -17,6 +17,13 @@ function preload() {
     this.load.image("bitcoin", "assets/bitcoin.png");
     this.load.image("sec", "assets/sec.png");
 }
+this.anims.create({
+    key: "chomp",
+    frames: this.anims.generateFrameNumbers("bitcoin", { start: 0, end: 3 }),
+    frameRate: 10,
+    repeat: -1
+});
+player.play("chomp");
 
 this.anims.create({
     key: "chomp",
